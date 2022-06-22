@@ -41,7 +41,10 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt('Pick rock, paper, or scissors').toLowerCase();
+        let playerSelection = prompt('Pick rock, paper, or scissors').toLowerCase();
+        while (playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors') {
+            playerSelection = prompt('***INVALID INPUT*** Pick rock, paper, or scissors').toLowerCase();
+        }
         const computerSelection = computerPlay();
         console.log(playerSelection);
         console.log(computerSelection);
@@ -49,20 +52,15 @@ function game() {
         console.log('Wins: ' + playerScore);
         console.log('Losses: ' + computerScore);
         console.log('Ties: ' + ties);
-        if (i === 5) {
-            if (playerScore > computerScore) {
-                return 'You won!';
-            }
-            else if (playerScore < computerScore) {
-                return 'You lose!';
-            }
-            else {
-                return 'It ended in a tie';
-            }
-        }
-        else {
-            playRound(playerSelection, computerSelection);
-        }
+    }
+    if (playerScore > computerScore) {
+        return 'You won!';
+    }
+    else if (playerScore < computerScore) {
+        return 'You lose!';
+    }
+    else {
+        return 'It ended in a tie';
     }
 }
 
